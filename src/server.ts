@@ -9,9 +9,16 @@ let iventario : Item[] = []
 
 //Rota para criar um item novo
 app.post("/itens", (req:Request, res: Response)=>{
-    const {id, nome, categoria, preco, estoque} = req.body;
+    const { nome, categoria, preco, estoque} = req.body;
+
+    const novoID = iventario.length > 0 
+    ? 
+    Math.max(...iventario.map(i => i.id))+1
+    :
+    1;
+    
     const novoItem : Item  = {
-        id,
+        id: novoID,
         nome,
         categoria,
         preco,

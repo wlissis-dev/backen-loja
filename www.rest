@@ -2,7 +2,6 @@ POST http://localhost:3000/itens
 content-type: application/json
 
 {
-    "id": 1,
     "nome": "Playstation",
     "preco": 1000,
     "estoque": 100,
