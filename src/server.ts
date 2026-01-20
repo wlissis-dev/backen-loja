@@ -32,9 +32,11 @@ app.get("/itens", (req:Request, res:Response)=>{
             if(itensFiltrados.length === 0){
                 return res.status(404).json({mensagem:"Nenhum item encontrado!"})
             }
-
-            return res.status(200).json(iventario)
+            return res.status(200).json(itensFiltrados)
         }
+        
+        return res.status(200).json(iventario)
+        
     } catch (error) {
         console.error("Erro ao exibir dados:", error)
         return res.status(500).json({mensagem:"Erro interno no serivor"})

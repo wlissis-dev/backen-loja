@@ -3,13 +3,17 @@ content-type: application/json
 
 {
     "id": 1,
-    "nome": "Televisão 52P",
+    "nome": "Playstation",
     "preco": 1000,
     "estoque": 100,
-    "categoria": "tecnologia"
+    "categoria": "lazer"
 }
 
 ###
 
+GET http://localhost:3000/itens?categoria=tecnologia
+content-type: application/json
+
+### 
 GET http://localhost:3000/itens
 content-type: application/json
