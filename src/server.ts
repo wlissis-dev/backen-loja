@@ -22,15 +22,19 @@ app.post("/itens", (req:Request, res: Response)=>{
     return res.status(201).json(novoItem)
 })
 
-//Rota para listar todos os itens
+//Rota para listar itens por categoria
 app.get("/itens", (req:Request, res:Response)=>{
+    const {categoria}= req.query
     try {
-        if(iventario.length === 0){
-            console.log("Consulta realizada: Iventario vazio")
-            return res.json([])
+        if(categoria){
+            const itensFiltrados = iventario.filter(i => i.categoria === categoria);
+
+            if(itensFiltrados.length === 0){
+                return res.status(404).json({mensagem:"Nenhum item encontrado!"})
+            }
+
+            return res.status(200).json(iventario)
         }
-         console.log(`Conculta realizada: Retornando ${iventario.length} Itens`)
-         return res.json(iventario)
     } catch (error) {
         console.error("Erro ao exibir dados:", error)
         return res.status(500).json({mensagem:"Erro interno no serivor"})
