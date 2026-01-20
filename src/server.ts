@@ -27,7 +27,7 @@ app.get("/itens", (req:Request, res:Response)=>{
     const {categoria}= req.query
     try {
         if(categoria){
-            const itensFiltrados = iventario.filter(i => i.categoria === categoria);
+            const itensFiltrados = iventario.filter(i => String(i.categoria).toLocaleLowerCase() === categoria);
 
             if(itensFiltrados.length === 0){
                 return res.status(404).json({mensagem:"Nenhum item encontrado!"})
