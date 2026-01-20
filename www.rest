@@ -1,0 +1,15 @@
+POST http://localhost:3000/itens
+content-type: application/json
+
+{
+    "id": 1,
+    "nome": "Televisão 52P",
+    "preco": 1000,
+    "estoque": 100,
+    "categoria": "tecnologia"
+}
+
+###
+
+GET http://localhost:3000/itens
+content-type: application/json
