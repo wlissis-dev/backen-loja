@@ -16,7 +16,7 @@ app.post("/itens", (req:Request, res: Response)=>{
     Math.max(...iventario.map(i => i.id))+1
     :
     1;
-    
+
     const novoItem : Item  = {
         id: novoID,
         nome,
@@ -48,6 +48,22 @@ app.get("/itens", (req:Request, res:Response)=>{
         console.error("Erro ao exibir dados:", error)
         return res.status(500).json({mensagem:"Erro interno no serivor"})
     }
+})
+
+//Rota para deletar um item
+app.delete("/itens/:id", (req:Request, res:Response)=>{
+    //tranformando em numero pois tudo quem vem da URL é string
+    const id = Number(req.params.id);
+
+    const index = iventario.findIndex(item => item.id === id);
+
+    if (index === -1) {
+        return res.status(404).json({ mensagem: "Item não encontrado para exclusão." });
+    }
+
+    iventario.splice(index,1);
+
+    return res.status(200).json({ mensagem: `Item ${id} removido com sucesso.` });
 })
 
 const PORT = 3000;
