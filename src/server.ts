@@ -66,6 +66,32 @@ app.delete("/itens/:id", (req:Request, res:Response)=>{
     return res.status(200).json({ mensagem: `Item ${id} removido com sucesso.` });
 })
 
+app.put("/itens/:id",(req: Request, res:Response)=>{
+    const id = Number(req.params.id);
+    const {categoria,nome, preco, estoque} = req.body;
+
+    const index = iventario.findIndex((item) => item.id === id);
+    if (index === -1) {
+        return res.status(404).json({ mensagem: "Item não encontrado para atualização." });
+    }
+
+    const itemAtualizado: Item = {
+        id,
+        categoria,
+        estoque,
+        nome,
+        preco
+    }
+
+    iventario[index] = itemAtualizado;
+    
+    return res.json({ 
+        mensagem: "Item atualizado com sucesso!", 
+        item: itemAtualizado 
+    });
+    
+})
+
 const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Servidor rodando em http://localhost:${PORT}`);

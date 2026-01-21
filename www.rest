@@ -16,3 +16,7 @@ content-type: application/json
 ### 
 GET http://localhost:3000/itens
 content-type: application/json
+
+### 
+DELETE  http://localhost:3000/itens/4
+content-type: application/json
